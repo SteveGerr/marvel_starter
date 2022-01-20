@@ -21,7 +21,6 @@ class CharList extends Component {
     }
 
     onCharListLoaded = (charList) => {
-        console.log("charList", charList);
         this.setState({
             charList,
             loading: false
