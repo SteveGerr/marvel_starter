@@ -12,7 +12,7 @@ const AppHeader = () => {
                 <ul>
                     <li><a href="https://www.marvel.com/characters">Characters</a></li>
                     /
-                    <li><a href="https://www.marvel.com/comics">Comics</a></li>
+                    <li><a href="https://www.marvel.com">Comics</a></li>
                 </ul>
             </nav>
         </header>
