@@ -1,10 +1,9 @@
 
-import md5 from 'js-md5';
 
 /** Universal class for responses */
 class MarvelService {
-    _apiDase = "https://gateway.marvel.com:443/v1/public/characters/"
-    _apiKey = "?apikey=7446ea1b1fc36115b92d708c4f5d1211"
+    _apiBase = "https://gateway.marvel.com:443/v1/public/characters"
+    _apiKey = "apikey=7446ea1b1fc36115b92d708c4f5d1211"
 
     /** Get resourses */
     getResource = async (url) => {
@@ -20,13 +19,13 @@ class MarvelService {
     }
 
     getAllCharacters = () => {
-        const res = this.getResource(`${this._apiDase}?limit=9&offset=210&${this._apiKey}`);
+        const res = this.getResource(`${this._apiBase}?limit=9&offset=210&${this._apiKey}`);
 
         return res.data.results.map(this._transformCharacter)
     }
 
     getCharacter = async (id) => {
-        const res = await this.getResource(`${this._apiDase}${id}${this._apiKey}`);
+        const res = await this.getResource(`${this._apiDase}/${id}?${this._apiKey}`);
         return this._transformCharacter(res.data.results[0]);
     }
 
