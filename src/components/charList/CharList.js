@@ -34,6 +34,12 @@ class CharList extends Component {
         })
     }
 
+    onCharLoading = () => {
+        this.setState({
+            loading: true
+        })
+    }
+
     // Этот метод создан для оптимизации,
     // чтобы не помещать такую конструкцию в метод render
     renderItems(arr) {
