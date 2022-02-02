@@ -1,10 +1,12 @@
 import {useState, useEffect, useRef} from 'react';
 import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../errorMessage/errorMessage';
-import MarvelService from '../../Services/MarvelServices';
+import useMarvelService from '../../Services/MarvelServices';
 import './charList.scss';
 
 const CharList = (props) => {
+
+    const { getAllCharacters } = useMarvelService()
 
     const [charList, setCharList] = useState([])
     const [loading, setLoading] = useState(true)
@@ -13,7 +15,7 @@ const CharList = (props) => {
     const [offset, setOffset] = useState(210)
     const [charEnded, setCharEnded] = useState(false)
 
-    const marvelService = new MarvelService();
+    // const marvelService = new useMarvelService();
 
     // useEffect запускается после объявления функции
     useEffect(() => {
@@ -22,7 +24,7 @@ const CharList = (props) => {
 
     const onRequest = (offset) => {
         onCharListLoading()
-        marvelService.getAllCharacters(offset)
+        getAllCharacters(offset)
         .then(onCharListLoaded)
         .catch(onError)
 
