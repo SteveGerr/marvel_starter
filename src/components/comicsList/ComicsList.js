@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import './comicsList.scss';
-import uw from '../../resources/img/UW.png';
-import xMen from '../../resources/img/x-men.png';
 import useMarvelService from '../../Services/MarvelServices';
+import ErrorMessage from '../errorMessage/errorMessage';
+import Spinner from '../Spinner/Spinner';
 
 const ComicsList = () => {
 
@@ -19,6 +19,11 @@ const ComicsList = () => {
         onRequest(offset, true)
     }, [])
 
+    /**
+     *
+     * @param {Number} offset - количество запрашиваемого контента. По умолчанию 210
+     * @param {Boolean} initial
+     */
     const onRequest = (offset, initial) => {
         initial ? setNewItemLoading(false) : setNewItemLoading(true)
         getAllComics(offset)
@@ -62,12 +67,20 @@ const ComicsList = () => {
     }
 
     const items = renderItems(comics);
+    const errorMessage = error ? <ErrorMessage/> : null;
+    const spinner = loading && !newItemLoading ? <Spinner/> : null;
 
     return (
         <div className="comics__list">
-
+            {errorMessage}
+            {spinner}
             {items}
-            <button className="button button__main button__long">
+            <button
+                className="button button__main button__long"
+                disabled={newItemLoading}
+                style={{'display': comicEnded ? 'none' : 'block'}}
+                onClick={() => onRequest(offset)}
+                >
                 <div className="inner">load more</div>
             </button>
         </div>
