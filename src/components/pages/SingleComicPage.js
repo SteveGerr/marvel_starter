@@ -9,7 +9,7 @@ import './singleComicPage.scss';
 
 const SingleComicPage = () => {
 
-    const [comic, setComic] = useState([]);
+    const [comic, setComic] = useState(null);
     const {comicId} = useParams()
     const {getComic, loading, error, clearError} = useMarvelService()
 
