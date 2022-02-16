@@ -4,7 +4,6 @@ import useMarvelService from '../../Services/MarvelServices';
 import ErrorMessage from '../errorMessage/errorMessage'
 import Spinner from '../Spinner/Spinner'
 import Skeleton from '../skeleton/Skeleton'
-import AppBanner from '../appBanner/AppBanner';
 import {Helmet} from "react-helmet";
 
 import './singleComicPage.scss';
