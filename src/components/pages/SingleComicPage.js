@@ -5,21 +5,23 @@ import ErrorMessage from '../errorMessage/errorMessage'
 import Spinner from '../Spinner/Spinner'
 import Skeleton from '../skeleton/Skeleton'
 import AppBanner from '../appBanner/AppBanner';
+import {Helmet} from "react-helmet";
+
 import './singleComicPage.scss';
 
 const SingleComicPage = () => {
 
     const [comic, setComic] = useState(null);
-    const {comicId} = useParams()
+    const {id} = useParams()
     const {getComic, loading, error, clearError} = useMarvelService()
 
     useEffect(() => {
         onRequest()
-    }, [comicId])
+    }, [id])
 
     const onRequest = () => {
         clearError()
-        getComic(comicId)
+        getComic(id)
             .then(onComicLoaded)
     }
 
@@ -36,7 +38,13 @@ const SingleComicPage = () => {
 
     return (
         <>
-            <AppBanner />
+            <Helmet>
+                <meta
+                    name="description"
+                    content="Comics page"
+                    />
+                <title>Single comic</title>
+            </Helmet>
             {skeleton}
             {errorMessage}
             {spinner}
